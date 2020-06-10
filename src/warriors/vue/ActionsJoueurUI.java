@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
+import warriors.modele.LancementDeAction;
+
 public class ActionsJoueurUI extends JPanel{
 
 	/**

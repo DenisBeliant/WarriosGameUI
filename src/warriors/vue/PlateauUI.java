@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
+import warriors.modele.Personnage;
+
 public class PlateauUI extends JPanel{
 
 	/**
@@ -16,21 +18,15 @@ public class PlateauUI extends JPanel{
 	private SpringLayout layout = new SpringLayout();
 	private Case[] cases;
 	private int positionJoueur = 0;
-	private InfosJoueurUI infosJoueur;
+	private Personnage player;
+	private final int SIZE = 64;
 	
 	
 	public PlateauUI() {
 		
 		this.setPreferredSize(new Dimension(1000,200));
 		this.setLayout(layout);
-		cases = new Case[10];
-		
-		this.cases[0] = new Case(0, "Joueur", "Guerrier.png", positionJoueur);
-		
-		for(int i = 1; i < 10; i++) {
-			this.cases[i] = new Case(i * 80 + (30 * i), "Case vide", "vide.png", positionJoueur + i);
-		}
-		
+
 	}
 
 	public void paintComponent(Graphics g) {
@@ -45,12 +41,37 @@ public class PlateauUI extends JPanel{
 			g.fillRect(20 * i, 182, 12, 7);
 		}
 		
-		for(int i = 0; i < 10; i++) {
+		if(player != null) this.cases[0].joueur(0, player.getName(), player.getType() + ".png", positionJoueur, g);		
+		else this.cases[0].joueur(0, "Joueur", "Default" + ".png", positionJoueur, g);		
+		
+		for(int i = 1; i < 10; i++) {
 			this.cases[i].paint(g);
 		}
 	}
 	
-	public void setInfosJoueur(InfosJoueurUI info) {
-		this.infosJoueur = info;
+	public void setPlayer(Personnage player) {
+		this.player = player;
 	}
+	
+	public void createPlateau() {
+		
+		cases = new Case[SIZE];
+		
+		if(player != null) this.cases[0] = new Case(0, player.getName(), player.getType() + ".png", positionJoueur);
+		else this.cases[0] = new Case(0, "Joueur", "", 0);
+		
+		for(int i = 1; i < SIZE; i++) {
+			int r = (int) (Math.random()*3);
+			String type;
+			switch(r) {
+			case 0: type = "Vide"; break;
+			case 1: type = "Ennemi"; break;
+			case 2: type = "Potions"; break;
+			case 3: type = "Arme"; break;
+			default: type = "Vide";
+			}
+			this.cases[i] = new Case(i * 80 + (30 * i), type, type + ".png", positionJoueur + i);
+		}
+	}
+	
 }

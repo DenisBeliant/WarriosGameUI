@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class ActionsUI extends JPanel {
@@ -55,6 +56,8 @@ public class ActionsUI extends JPanel {
 		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 		int sizeWidth = 550;
 		int sizeHeight = 300;
+		
+		ImageIcon imgIcon = new ImageIcon(this.img);
 		g2d.drawImage(this.img, this.getWidth()/2 - (sizeWidth/2),this.getHeight() / 2 - (sizeHeight/2),sizeWidth,sizeHeight, this);
 		
 		g.setColor(Color.WHITE);

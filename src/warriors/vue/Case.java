@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Case extends JPanel {
@@ -38,11 +39,37 @@ public class Case extends JPanel {
 	
 	public void paint(Graphics g) {
 		
+		ImageIcon imgIcon = new ImageIcon(this.fond);
+		
 		g.setColor(new Color(0,0,20));
 		g.fillRect(10 + this.x, 30, 100, 140);
 		g.setColor(new Color(255,255,255));
 		g.drawString("Case " + number, 16 + this.x, 42);
 		g.drawImage(this.fond,20 + this.x, 50, 80, 80, null);
 		g.drawString(this.type, this.x + 24, 160);
+	}
+
+	public void joueur(int x, String type, String fondUrl, int number, Graphics g) {
+		
+		
+		try {
+		//on récupère l'image à l'adresse où on l’a mise…
+
+		fond=Toolkit.getDefaultToolkit().getImage((path + fondUrl));
+
+		
+		//fin chargement des images.
+		}
+		catch (Exception e)
+		 {System.out.println("erreur dans le chargement des images:"+e);};
+		
+		 ImageIcon imgIcon = new ImageIcon(this.fond);
+		g.setColor(new Color(0,0,20));
+		g.fillRect(10 + this.x, 30, 100, 140);
+		g.setColor(new Color(255,255,255));
+		g.drawString("Case " + number, 16 + this.x, 42);
+		g.drawImage(fond,20 + this.x, 50, 80, 80, null);
+		g.drawString(type, this.x + 24, 160);
+		
 	}
 }

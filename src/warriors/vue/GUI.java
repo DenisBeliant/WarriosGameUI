@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.SpringLayout;
 
 import warriors.modele.CreatePlayer;
+import warriors.modele.Personnage;
 
 public class GUI extends JFrame {
 	
@@ -22,6 +23,7 @@ public class GUI extends JFrame {
 	private InfosJoueurUI infos;
 	private ActionsUI actions;
 	private ActionsJoueurUI actionsJoueur;
+	private PlateauUI plateau;
 
 
 	public GUI() {
@@ -36,7 +38,8 @@ public class GUI extends JFrame {
 		actions = new ActionsUI("Lance une partie,", "Pour entrer dans le donjon..");
 		infos = new InfosJoueurUI();
 		actionsJoueur = new ActionsJoueurUI(this);
-		PlateauUI plateau = new PlateauUI();
+		plateau = new PlateauUI();
+		plateau.createPlateau();
 		
 		layout.putConstraint(SpringLayout.NORTH, actions, 5, SpringLayout.NORTH, contentPane);
 		
@@ -70,7 +73,10 @@ public class GUI extends JFrame {
 	public ActionsJoueurUI getActionsJoueur() {
 		return actionsJoueur;
 	}
-	
+
+	public PlateauUI getPlateau() {
+		return this.plateau;
+	}
 	private void menu() {
 		
 		JMenuBar menuBar = new JMenuBar();

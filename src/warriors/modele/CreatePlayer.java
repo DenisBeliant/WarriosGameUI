@@ -24,12 +24,25 @@ public class CreatePlayer extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		
 		String[] type = {"Guerrier", "Magicien", "Elfe", "Nain"};
+		Personnage player;
 		
 		String name = (String) JOptionPane.showInputDialog(fenetre, "Choississez le nom du joueur :", "Nom du joueur", JOptionPane.INFORMATION_MESSAGE);
 		String reponseType = (String) JOptionPane.showInputDialog(fenetre, "Salut à toi " + name + " !", "Type de joueur", JOptionPane.QUESTION_MESSAGE, null, type, type[0]);
 		
-		fenetre.getInfo().getPseudo().setText(name + "Type : " + reponseType);
-		fenetre.getInfo().setType(reponseType);
+		switch(reponseType) {
+		case "Guerrier" : player = new Guerrier(name); break;
+		case "Magicien": player = new Magicien(name); break;
+		case "Elfe": player = new Elfe(name); break;
+		case "Nain": player = new Nain(name); break;
+		default: player = new Guerrier(name); break;
+		}
+		
+		fenetre.getInfo().getPseudo().setText(player.getName() + "Type : " + player.getType());
+		fenetre.getInfo().setType(player.getType());
+		fenetre.getInfo().getVie().setText("Vie : " + player.drawLife(player.getHealth()));
+		fenetre.getInfo().getForce().setText("Force :" + player.drawStrength(player.getStrength()));
+		fenetre.getInfo().setPerso(player);
+		fenetre.getPlateau().setPlayer(player);
 		fenetre.getActionsJoueur().getLancer().setEnabled(true);
 		fenetre.repaint();
 	}
