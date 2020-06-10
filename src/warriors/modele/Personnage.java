@@ -240,8 +240,12 @@ public void interactions(String type) {
 			break;
 		}
 
-		if (this.type == porte.getFOR() && porte.getStrenth() >= arme.getStrenth())
+		if (this.type == porte.getFOR() && porte.getStrenth() >= arme.getStrenth()) {
+			
 			setArme(porte);
+			this.frame.getInfo().getArme().setText("Arme : " + porte.getName() + " (" + porte.getStrenth() + ")");
+			this.frame.getInfo().repaint();
+		}
 		else if (porte.getStrenth() < arme.getStrenth())
 			this.frame.getActions().setTexte2("Cette arme est moins bien que la tienne !");
 		else
