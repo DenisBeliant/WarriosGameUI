@@ -42,6 +42,7 @@ public class QuickGame extends AbstractAction {
 		fenetre.getInfo().getForce().setText("Force :" + player.drawStrength(player.getStrength()));
 		fenetre.getInfo().setPerso(player);
 		fenetre.getPlateau().setPlayer(player);
+		player.setFrame(fenetre);
 		fenetre.getActionsJoueur().getLancer().setEnabled(true);
 		fenetre.repaint();
 	}

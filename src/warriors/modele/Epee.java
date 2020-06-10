@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 public class Epee extends Armes {
 
 	private static final int FORCE = 5;
-	private static String name = "Epée";
+	private static String name = "Epee";
 	private final String FOR = "Guerrier";
 	
 	public Epee() {

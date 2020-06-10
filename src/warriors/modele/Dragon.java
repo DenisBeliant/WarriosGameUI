@@ -1,6 +1,7 @@
 package warriors.modele;
 
 public class Dragon extends Personnage{
+	
 	private static int STRENGTH = 4;
 	private static int LIFE = 15;
 	private static String name = "Dragon";

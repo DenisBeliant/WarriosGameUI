@@ -11,9 +11,6 @@ import warriors.modele.Personnage;
 
 public class PlateauUI extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private SpringLayout layout = new SpringLayout();
 	private Case[] cases;
@@ -53,7 +50,8 @@ public class PlateauUI extends JPanel{
 			}
 			else this.cases[i].paint(i,g);
 			}
-		}
+	if(player != null) player.interactions(this.cases[player.getPosition()].getType());	
+}
 
 	
 	public void setPlayer(Personnage player) {
@@ -67,7 +65,7 @@ public class PlateauUI extends JPanel{
 		this.cases[0] = new Case("Joueur", "", 0);
 		
 		for(int i = 1; i < SIZE; i++) {
-			int r = (int) (Math.random()*3);
+			int r = (int) (Math.random()*4);
 			String type;
 			switch(r) {
 			case 0: type = "Vide"; break;

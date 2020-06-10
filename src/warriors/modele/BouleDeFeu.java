@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 public class BouleDeFeu extends Armes {
 
 	private static final int FORCE = 7;
-	private static String name = "Boule de Feu";
+	private static String name = "BouleDeFeu";
 	private final String FOR = "Magicien";
 	
 	public BouleDeFeu() {

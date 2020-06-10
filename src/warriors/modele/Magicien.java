@@ -17,8 +17,8 @@ public class Magicien extends Personnage{
 	 */
 	private static final long serialVersionUID = 1L;
 	private final static String type = "Magicien";
-	private final static int HEALTH = 3;
-	private final static int STRENGTH = 8;
+	private final static int HEALTH = 1;
+	private final static int STRENGTH = 1;
 	private final static int MAX_HEALTH = 6;
 	private final static int MAX_STRENGTH = 15;
 	protected Image img;

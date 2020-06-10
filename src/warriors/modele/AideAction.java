@@ -1,9 +1,11 @@
-package warriors.vue;
+package warriors.modele;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
+
+import warriors.vue.GUI;
 
 public class AideAction extends AbstractAction {
 	

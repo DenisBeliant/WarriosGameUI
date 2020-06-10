@@ -70,4 +70,9 @@ public class Case extends JPanel {
 		g.drawString(type,  24, 160);
 		
 	}
+
+	public String getType() {
+		return type;
+	}
+	
 }

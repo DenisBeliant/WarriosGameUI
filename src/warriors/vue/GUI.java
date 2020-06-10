@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.SpringLayout;
 
+import warriors.modele.AideAction;
 import warriors.modele.CreatePlayer;
 import warriors.modele.Personnage;
 
