@@ -17,7 +17,6 @@ public class PlateauUI extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private SpringLayout layout = new SpringLayout();
 	private Case[] cases;
-	private int positionJoueur = 0;
 	private Personnage player;
 	private final int SIZE = 64;
 	
@@ -41,13 +40,21 @@ public class PlateauUI extends JPanel{
 			g.fillRect(20 * i, 182, 12, 7);
 		}
 		
-		if(player != null) this.cases[0].joueur(0, player.getName(), player.getType() + ".png", positionJoueur, g);		
-		else this.cases[0].joueur(0, "Joueur", "Default" + ".png", positionJoueur, g);		
+		if(player != null) {
+			this.cases[0].joueur(player.getName(), player.getType() + ".png", player.getPosition(), g);		
+			player.setMax(SIZE);
+		}
+		else this.cases[0].joueur("Joueur", "Default" + ".png", 0, g);		
 		
 		for(int i = 1; i < 10; i++) {
-			this.cases[i].paint(g);
+			//this.cases[player.getPosition() +i].peindreCase(player.getPosition() + i, g);
+			if(player != null) {
+				if(i + player.getPosition() <= SIZE) this.cases[player.getPosition() +i].paint(i,g);
+			}
+			else this.cases[i].paint(i,g);
+			}
 		}
-	}
+
 	
 	public void setPlayer(Personnage player) {
 		this.player = player;
@@ -55,10 +62,9 @@ public class PlateauUI extends JPanel{
 	
 	public void createPlateau() {
 		
-		cases = new Case[SIZE];
+		cases = new Case[SIZE + 1];
 		
-		if(player != null) this.cases[0] = new Case(0, player.getName(), player.getType() + ".png", positionJoueur);
-		else this.cases[0] = new Case(0, "Joueur", "", 0);
+		this.cases[0] = new Case("Joueur", "", 0);
 		
 		for(int i = 1; i < SIZE; i++) {
 			int r = (int) (Math.random()*3);
@@ -70,8 +76,10 @@ public class PlateauUI extends JPanel{
 			case 3: type = "Arme"; break;
 			default: type = "Vide";
 			}
-			this.cases[i] = new Case(i * 80 + (30 * i), type, type + ".png", positionJoueur + i);
+			this.cases[i] = new Case(type, type + ".png",i);
 		}
+		
+		this.cases[SIZE] = new Case("Arrivee", "Arrivee" + ".png",SIZE);
 	}
 	
 }

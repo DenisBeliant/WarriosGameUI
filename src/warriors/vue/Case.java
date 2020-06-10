@@ -12,14 +12,12 @@ public class Case extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private String type;
-	private int x;
 	private int number;
 	private Image fond;
 	private String path = "images\\";
 	
-	public Case(int x, String type, String fondUrl, int number) {
+	public Case(String type, String fondUrl, int number) {
 		
-		this.x = x;
 		this.type = type;
 		this.number = number;
 		
@@ -37,19 +35,19 @@ public class Case extends JPanel {
 		 
 	}
 	
-	public void paint(Graphics g) {
+	public void paint(int x, Graphics g) {
 		
 		ImageIcon imgIcon = new ImageIcon(this.fond);
 		
 		g.setColor(new Color(0,0,20));
-		g.fillRect(10 + this.x, 30, 100, 140);
+		g.fillRect(10 + (x*110), 30, 100, 140);
 		g.setColor(new Color(255,255,255));
-		g.drawString("Case " + number, 16 + this.x, 42);
-		g.drawImage(this.fond,20 + this.x, 50, 80, 80, null);
-		g.drawString(this.type, this.x + 24, 160);
+		g.drawString("Case " + number, 16 + (x*110) , 42);
+		g.drawImage(this.fond,20 + (x*110), 50, 80, 80, null);
+		g.drawString(this.type, 24 + (x*110), 160);
 	}
 
-	public void joueur(int x, String type, String fondUrl, int number, Graphics g) {
+	public void joueur(String type, String fondUrl, int number, Graphics g) {
 		
 		
 		try {
@@ -65,11 +63,11 @@ public class Case extends JPanel {
 		
 		 ImageIcon imgIcon = new ImageIcon(this.fond);
 		g.setColor(new Color(0,0,20));
-		g.fillRect(10 + this.x, 30, 100, 140);
+		g.fillRect(10, 30, 100, 140);
 		g.setColor(new Color(255,255,255));
-		g.drawString("Case " + number, 16 + this.x, 42);
-		g.drawImage(fond,20 + this.x, 50, 80, 80, null);
-		g.drawString(type, this.x + 24, 160);
+		g.drawString("Case " + number, 16, 42);
+		g.drawImage(fond,20, 50, 80, 80, null);
+		g.drawString(type,  24, 160);
 		
 	}
 }
