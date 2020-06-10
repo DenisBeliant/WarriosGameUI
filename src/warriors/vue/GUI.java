@@ -25,6 +25,7 @@ public class GUI extends JFrame {
 	private ActionsUI actions;
 	private ActionsJoueurUI actionsJoueur;
 	private PlateauUI plateau;
+	private JMenuItem creerPerso;
 
 
 	public GUI() {
@@ -88,7 +89,7 @@ public class GUI extends JFrame {
 		JMenuItem regles = new JMenuItem(new AideAction(this, "> Règles du jeu"));
 		
 		JMenuItem partieRapide = new JMenuItem(new QuickGame(this, "> Partie rapide"));
-		JMenuItem creerPerso = new JMenuItem(new CreatePlayer(this, "> Création du personnage"));
+		creerPerso = new JMenuItem(new CreatePlayer(this, "> Création du personnage"));
 		JMenuItem quitter = new JMenuItem(new QuitterAction(this, "> Quitter"));
 		
 		menuBar.add(menu);
@@ -103,5 +104,9 @@ public class GUI extends JFrame {
 		
 		setJMenuBar(menuBar);
 }
+	
+	public void restart() {
+		creerPerso.doClick();;
+	}
 
 }

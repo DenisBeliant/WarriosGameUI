@@ -1,6 +1,8 @@
 package warriors.modele;
 
 public class Gobelin extends Personnage {
+
+	private static final long serialVersionUID = 1L;
 	private static int STRENGTH = 4;
 	private static int LIFE = 8;
 	private static String name = "Gobelin";

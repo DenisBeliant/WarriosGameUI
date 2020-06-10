@@ -112,16 +112,18 @@ public abstract class Personnage extends JPanel {
 		
 			if(this.position + position >= this.maxPlateau + 1 || this.position + position <= 0) {
 				this.position = maxPlateau;
+				if(this.position == maxPlateau) { 
 				this.frame.getActions().setTexte1("Bravo " + name + " !");
 				this.frame.getActions().setTexte2("Tu as gagné !");
 				this.frame.getActions().setImgObjet("Arrivee");
 				this.frame.getActions().repaint();
+				}
+				
 				throw new PersonnageHorsPlateauException();
 			}
 			else
 			{
 				this.position += position;
-				
 			}
 	}
 	
@@ -366,10 +368,10 @@ public void interactions(String type) {
 				this.frame.getActions().setImgObjet("Mort");
 
 				if (JOptionPane.showConfirmDialog(this.frame,
-			             "Lancer le combat ?", 
-			             "Se battre ou fuir ?",
+			             "Fin de partie", 
+			             "Recommencer ?",
 			             JOptionPane.OK_CANCEL_OPTION) == 0) {
-					new QuickGame(this.frame, "Nouvelle Partie");
+					this.frame.restart();
 				}
 				else System.exit(0);
 				

@@ -8,10 +8,14 @@ import javax.imageio.ImageIO;
 
 public class Massue extends Armes{
 	
-	private final int FORCE = 3;
+	private static final int FORCE = 3;
 	private final String FOR = "Guerrier";
 	private static String name = "Massue";
 
+	public Massue() {
+		super(name, FORCE);
+	}
+	
 	public int getForce() {
 		return this.FORCE;
 	}
