@@ -19,7 +19,6 @@ public class ActionsJoueurUI extends JPanel{
 	private SpringLayout layout = new SpringLayout();
 	private GUI fenetre;
 	private JButton lancer;
-	private JButton action;
 	private JButton quitter;
 	
 
@@ -29,33 +28,24 @@ public class ActionsJoueurUI extends JPanel{
 		this.setPreferredSize(new Dimension(220,300));
 		this.setLayout(layout);
 		lancer = new JButton(new LancementDeAction(this, "Lancer dé"));
-		action = new JButton("Action");
 		quitter = new JButton(new QuitterAction(fenetre,"Quitter"));
 		lancer.setEnabled(false);
-		action.setEnabled(false);
 		
 		Dimension dimensionsBoutons = new Dimension(100,40);
 		lancer.setPreferredSize(dimensionsBoutons);
-		action.setPreferredSize(dimensionsBoutons);
 		quitter.setPreferredSize(dimensionsBoutons);
 		lancer.setBackground(Color.GRAY);
-		action.setBackground(Color.GRAY);
 		quitter.setBackground(Color.GRAY);
 		lancer.setForeground(Color.WHITE);
-		action.setForeground(Color.WHITE);
 		quitter.setForeground(Color.WHITE);
 		
-		layout.putConstraint(SpringLayout.NORTH, lancer, 70, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.NORTH, lancer, 60, SpringLayout.NORTH, this);
 		layout.putConstraint(SpringLayout.WEST, lancer, 60, SpringLayout.WEST, this);
 		
-		layout.putConstraint(SpringLayout.NORTH, action, 10, SpringLayout.SOUTH, lancer);
-		layout.putConstraint(SpringLayout.WEST, action, 60, SpringLayout.WEST, this);
-		
-		layout.putConstraint(SpringLayout.NORTH, quitter, 10, SpringLayout.SOUTH, action);
+		layout.putConstraint(SpringLayout.SOUTH, quitter, -40, SpringLayout.SOUTH, this);
 		layout.putConstraint(SpringLayout.WEST, quitter, 60, SpringLayout.WEST, this);
 		
 		this.add(lancer);
-		this.add(action);
 		this.add(quitter);
 	}
 
@@ -72,8 +62,5 @@ public class ActionsJoueurUI extends JPanel{
 		return lancer;
 	}
 
-	public JButton getAction() {
-		return action;
-	}
 	
 }

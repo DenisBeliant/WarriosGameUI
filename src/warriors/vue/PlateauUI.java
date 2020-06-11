@@ -15,7 +15,7 @@ public class PlateauUI extends JPanel{
 	private SpringLayout layout = new SpringLayout();
 	private Case[] cases;
 	private Personnage player;
-	private final int SIZE = 64;
+	private final int SIZE = 10;
 	
 	
 	public PlateauUI() {

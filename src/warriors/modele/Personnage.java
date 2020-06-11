@@ -5,16 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import warriors.modele.*;
 import warriors.vue.GUI;
-import warriors.vue.QuickGame;
 
 public abstract class Personnage extends JPanel {
 	
@@ -110,13 +105,15 @@ public abstract class Personnage extends JPanel {
 	/** Setters qui vérifie si le personnage ne dépasse pas le plateau **/
 	public void setPosition(int position) throws PersonnageHorsPlateauException {
 		
-			if(this.position + position >= this.maxPlateau + 1 || this.position + position <= 0) {
+			if(this.position + position >= this.maxPlateau || this.position + position <= 0) {
+				
+				
+				if(this.position + position >= this.maxPlateau) { 
+				
 				this.position = maxPlateau;
-				if(this.position == maxPlateau) { 
-				this.frame.getActions().setTexte1("Bravo " + name + " !");
-				this.frame.getActions().setTexte2("Tu as gagné !");
-				this.frame.getActions().setImgObjet("Arrivee");
-				this.frame.getActions().repaint();
+				
+				} else {
+					this.position = 0;
 				}
 				
 				throw new PersonnageHorsPlateauException();
@@ -204,12 +201,18 @@ public void interactions(String type) {
 		case "Surprise":
 			prendrePotion();
 			break;
-		default:
-			prendrePotion();
+		case "Arrivee":
+			arrivee();
 			break;
 		}
 	}
 
+	public void arrivee() {
+		this.frame.getActions().setTexte1("Bravo " + name + " !");
+		this.frame.getActions().setTexte2("Tu as gagné !");
+		this.frame.getActions().setImgObjet("Arrivee");
+		this.frame.getActions().repaint();
+	}
 	public void porterArme() {
 
 		int random = (int) (Math.random() * 4) + 1;
@@ -331,19 +334,21 @@ public void interactions(String type) {
 
 					if (reussi()) {
 
-						System.out.println("Le " + ennemi.getName() + " te frappe");
+						this.frame.getActions().setTexte1(ennemi.getName() + " te frappe");
 						setHealth(-(ennemi.getStrength()));
+						this.frame.getActions().setTexte2("Il te retire " + ennemi.getStrength() + " points");
 						this.frame.getInfo().getVie().setText("Vie : " +drawLife(health));
 						this.frame.getInfo().repaint();
 					}
 
 					else
-						System.out.println("Son attaque a raté...");
+						this.frame.getActions().setTexte2("Son attaque a raté..");
 
 				}
 
 				else
-					System.out.println("Le " + ennemi.getName() + " est mort.");
+					this.frame.getActions().setTexte1("Le " + ennemi.getName());
+				this.frame.getActions().setTexte2("est mort..");
 
 			}
 
@@ -352,7 +357,8 @@ public void interactions(String type) {
 				try {
 					int recule = (int) (Math.random() * 6) + 1;
 					setPosition(recule);
-					System.out.println("Tu as reculé de : " + recule + " case(s)");
+					this.frame.getActions().setTexte1("Tu as choisi de fuir !");
+					this.frame.getActions().setTexte2("Tu recules donc de " + recule + " cases");
 				} catch (PersonnageHorsPlateauException e) {
 
 					try {
